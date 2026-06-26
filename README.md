@@ -1,117 +1,99 @@
-# 🛒 Shopper Spectrum
+# Shopper Spectrum
 ## Customer Segmentation & Product Recommendations in E-Commerce
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 shopper_spectrum/
 │
-├── data/                        ← Dataset goes here (auto-created)
-│   └── online_retail.xlsx
+├── data/                        ← Put your dataset here
+│   └── online_retail.csv        ← Copy your CSV file here
 │
-├── models/                      ← Saved ML models (auto-created by notebook)
+├── models/                      ← Auto-created when notebook runs
 │   ├── kmeans_model.pkl
 │   ├── scaler.pkl
 │   ├── cluster_labels.pkl
 │   └── similarity_df.pkl
 │
-├── shopper_spectrum.ipynb       ← Main Jupyter Notebook (run this first)
+├── shopper_spectrum.ipynb       ← Main Jupyter Notebook (run first)
 ├── app.py                       ← Streamlit Web App
-├── data_download.py             ← Dataset downloader script
+├── data_download.py             ← Dataset location checker
 ├── requirements.txt             ← Python dependencies
 └── README.md                    ← This file
 ```
 
 ---
 
-## ⚙️ Setup Instructions (Step by Step)
+## Setup Instructions (Step by Step)
 
 ### Step 1 — Install Python & VS Code
-- Make sure Python 3.8+ is installed: https://www.python.org/downloads/
-- Install VS Code: https://code.visualstudio.com/
-- Install the **Python** and **Jupyter** extensions in VS Code
-
----
+- Python 3.8+: https://www.python.org/downloads/
+- VS Code: https://code.visualstudio.com/
+- Install Python and Jupyter extensions in VS Code
 
 ### Step 2 — Open the project folder in VS Code
 ```
 File → Open Folder → select the shopper_spectrum folder
 ```
 
----
-
-### Step 3 — Open a Terminal in VS Code
+### Step 3 — Copy your dataset
+Copy `online_retail.csv` into the `data/` folder:
 ```
-Terminal → New Terminal
+shopper_spectrum/
+└── data/
+    └── online_retail.csv   ← here
 ```
 
----
-
-### Step 4 — Install all required libraries
+### Step 4 — Open Terminal and install libraries
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-### Step 5 — Download the Dataset
+### Step 5 — Verify dataset location
 ```bash
 python data_download.py
 ```
-This will download the dataset into the `data/` folder automatically.
-
----
+Should print: "Dataset found at 'data/online_retail.csv'"
 
 ### Step 6 — Run the Jupyter Notebook
-- Open `shopper_spectrum.ipynb` in VS Code
-- Click **"Run All"** (or press Shift+Enter on each cell)
-- This will:
-  - Clean and analyze the data
-  - Build the RFM customer segments
-  - Train the KMeans model
-  - Build the product recommendation system
-  - Save all models to the `models/` folder
-
----
+- Open `shopper_spectrum.ipynb`
+- Click Run All (Ctrl+Shift+P → Run All)
+- Wait for all cells to complete (~3-5 minutes)
+- Last cell should print: "All models saved to /models!"
 
 ### Step 7 — Launch the Streamlit App
 ```bash
 streamlit run app.py
 ```
-- A browser window will open automatically at http://localhost:8501
-- Use the sidebar to switch between modules
+Opens automatically at http://localhost:8501
 
 ---
 
-## 🎯 App Features
+## App Modules
 
-### Module 1 — Product Recommendations
-- Enter any product name (partial match supported)
-- Get top 5 similar products based on purchase patterns
-
-### Module 2 — Customer Segmentation
-- Enter Recency, Frequency, Monetary values
-- Predict which segment the customer belongs to
-- Get actionable business insights
+| Module | Description |
+|---|---|
+| Product Recommender | Enter a product name → get top-5 similar products |
+| Customer Segmentation | Enter RFM values → predict customer segment |
 
 ---
 
-## 📊 Customer Segments
+## Customer Segments
 
-| Segment     | Recency | Frequency | Monetary | Strategy                     |
-|-------------|---------|-----------|----------|------------------------------|
-| High-Value  | Low     | High      | High     | Loyalty rewards, VIP offers  |
-| Regular     | Low     | Medium    | Medium   | Promotions, cross-sell       |
-| Occasional  | High    | Low       | Low      | Limited-time offers          |
-| At-Risk     | High    | Very Low  | Very Low | Re-engagement campaigns      |
+| Segment | Description | Action |
+|---|---|---|
+| High-Value | Recent, frequent, high spend | Loyalty rewards, VIP offers |
+| Regular | Steady buyers | Promotions, cross-sell |
+| Occasional | Rare purchases | Limited-time offers |
+| At-Risk | Long inactive | Win-back campaigns |
 
 ---
 
-## 🛠 Tech Stack
-- **Pandas, NumPy** — Data processing
-- **Matplotlib, Seaborn, Plotly** — Visualizations
-- **Scikit-Learn** — KMeans Clustering, StandardScaler, Cosine Similarity
-- **Streamlit** — Web application
-- **Joblib** — Model saving/loading
+## Tech Stack
+- Pandas, NumPy — Data processing
+- Matplotlib, Seaborn, Plotly — Visualisations
+- Scikit-Learn — KMeans, StandardScaler, Cosine Similarity
+- Streamlit — Web application
+- Joblib — Model saving/loading
